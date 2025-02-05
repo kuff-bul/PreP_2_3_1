@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Operation</th>
+    </tr>
+    <tr>
+    <tr th:each="use : ${allUse}">
+        <td th:utext="${use.name}"></td>
+        <td th:utext="${use.surname}"></td>
+        <td th:utext="${use.department}"></td>
+        <td th:utext="${use.salary}"></td>
+        <td>
+            <form th:method="GET" th:action="@{/edit}">
+                <input type="hidden" name="id" th:value="${use.id}"/>
+                <input type="submit" class="buttonEdit" value="Edit"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{'delete?id=' + ${use.id}}">
+<!--            <form th:method="DELETE" th:action="@{'delete/' + ${use.id}}">-->
+                <input type="submit" class="buttonDelete" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<input type="button" value="Add" onclick="window.location.href = 'addNewUsers' ">
+</body>
+</html>
